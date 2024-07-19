@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+
+body { 
+	width: 100%; 
+	margin-bottom: 10px; 
+	background: #fff;
+	border: none;
+	outline: none;
+	padding: 10px;
+	font-size: 13px;
+	color: #092756;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius: 4px;
+	box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+}
+.login{
+top: 20%;
+}
+</style>
+</head>
+
+<body>
+ <div class="login">
+	  <h4>Predicting whether the product is getting delivered on time or not. </h4>
+
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action= "/y_predict" method="post">
+		<select name="Warehouse Block" required="required">
+		  <option value="">Select Warehouse </option>
+		  <option value= A>A</option>
+		  <option value= B>B</option>
+		  <option value= C>C</option>
+		  <option value= D>D</option>
+		</select>
+		<select name="Mode Of Shipment" required="required">
+		  <option value="">Select Mode of Shipment </option>
+		  <option value= Flight>Flight</option>
+		  <option value=  Ship>Ship</option>
+		  <option value=  Road>Road</option>
+		</select>
+		<select name="Product Importance" required="required">
+		  <option value="">Select Product Importance </option>
+		  <option value= low>low</option>
+		  <option value=  medium>medium</option>
+		  <option value=  high>high</option>
+		</select>
+		
+		<select name="Gender" required="required">
+		  <option value="">Select Gender </option>
+		  <option value= M>Male</option>
+		  <option value=  F>Female</option>
+		</select>
+        
+
+    <div>
+        <input type="text" name="ID" placeholder="Product ID" required="required" />
+        <input type="text" name="Calls" placeholder="Customer Care Calls" required="required" />
+        <input type="text" name="Rating" placeholder="Customer Rating" required="required" />
+        <input type="text" name="Cost" placeholder="Product Cost" required="required" />
+        <input type="text" name="Prior Purchase" placeholder="Prior Purchase" required="required" />
+        <input type="text" name="Discount" placeholder="Discount Offered" required="required" />
+        <input type="text" name="Weight" placeholder="Product Weight (gms)" required="required" />
+        <button type="submit" class="btn btn-warning btn-block btn-large">Predict</button>
+    </div>
+
+    {{ prediction_text }}
+   <br>
+   <br>
+
+ </div>
+
+
+</body>
+</html>
+
